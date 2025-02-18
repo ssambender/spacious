@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Hero = () => {
+const Hero = ({text}) => {
   return (
     <Section>
       <Overlay>
         <Container>
           <HeroTextColumn>
             <Header>
-              Welcome to the CMPSC 263
+              {text}
               <Highlight>Start Here</Highlight>
             </Header>
             <SubheaderAndStarsColumn>
@@ -23,6 +23,9 @@ const Hero = () => {
 };
 
 const Section = styled.section`
+background-color: blue;
+width: 100%;
+height: 10vh;
 `;
 
 const Overlay = styled.div`

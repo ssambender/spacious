@@ -1,38 +1,53 @@
 import React from 'react';
 import styled from 'styled-components';
-import Link from 'next/link'
-import { logOut } from '@/backend/Auth';
-import { useStateContext } from '@/context/StateContext';
-import Home from '@/components/Dashboard/Home'
-const Navbar = () => {
-  const { setUser } = useStateContext()
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
-  return (
-    <Nav>
-      <Logo onClick={() => logOut(setUser)} href="/">CMPSC 263</Logo>
-      <Home></Home>
-      <NavLinks>
-        <ButtonLink href="/auth/signup">Sign Up</ButtonLink>
-        <ButtonLink href="/auth/login">Login</ButtonLink>
-      </NavLinks>
-    </Nav>
-  );
-};
-
-const Nav = styled.nav`
-
-`;
-
-const Logo = styled(Link)`
-
+const NavbarContainer = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20vw;
+  background-color: rgb(0 0 0 / 0%);
+  color: #fff;
+  width: 100vw;
 `;
 
 const NavLinks = styled.div`
-
+  display: flex;
+  gap: 36px;
 `;
 
-const ButtonLink = styled(Link)`
+const NavButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 50%;
 
+  &:hover {
+    text-decoration: underline;
+    opacity: 100%;
+  }
 `;
+
+const Navbar = () => {
+  const router = useRouter();
+
+  return (
+    <NavbarContainer>
+      <Link href="/"><NavButton style={{fontFamily: "'Bagel Fat One', serif"}}>Spacious</NavButton></Link>
+      <NavLinks>
+        <Link href="/find"><NavButton>Find a Spot</NavButton></Link>
+        <Link href="/sell"><NavButton>Rent a Spot</NavButton></Link>
+        {/* <NavButton onClick={() => router.push('/map')}>Map View</NavButton> */}
+        <Link href="/map"><NavButton>Map View</NavButton></Link>
+        <Link href="/about"><NavButton>About</NavButton></Link>
+        <Link href="/account"><NavButton>My Account</NavButton></Link>
+      </NavLinks>
+    </NavbarContainer>
+  );
+};
 
 export default Navbar;

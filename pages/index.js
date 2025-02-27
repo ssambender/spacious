@@ -1,11 +1,11 @@
 import { styled } from 'styled-components'
 import Navbar from "@/components/Dashboard/Navbar"
-import Footer from "@/components/LandingPage/Footer"
+import Link from 'next/link';
 import ParticleBackground from "@/components/Dashboard/particlebackground"
 
 const Hero = styled.section`
   text-align: center;
-  padding: 100px 0 0 0;
+  padding: 100px 0;
 `;
 
 const HeroTitle = styled.h2`
@@ -14,6 +14,10 @@ const HeroTitle = styled.h2`
   color: #ffffff;
   font-family: "Bagel Fat One", serif;
   font-weight: 400;
+
+  @media all and (orientation: portrait) {
+    font-size: 88px;
+  }
 `;
 
 const HeroSubtitle = styled.p`
@@ -23,16 +27,41 @@ const HeroSubtitle = styled.p`
 `;
 
 const Button = styled.button`
-  background-color: var(--main-color-1);
+  background: linear-gradient(145deg, var(--main-color-1) 30%, var(--main-particle-2) 100%);
   color: white;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
+  background-size: 200% 200%;
+  background-position: 25%;
+  box-shadow: 0px 0px 6px 0px #00000000;
+  transition: background-position 1s ease-in-out, box-shadow 0.6s ease-in-out;
+
   &:hover {
-    background-color: var(--main-color-2);
+    background-position: 100%;
+    box-shadow: 0px 5px 6px 0px #0000003b;
+    transition: background-position .4s ease-in-out, box-shadow 0.4s ease-in-out;
   }
+`;
+
+const LowerContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 64px;
+`;
+
+const LandingImage = styled.div`
+  width: 500px;
+  height: 300px;
+  background: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
 `;
 
 export default function Home() {
@@ -42,9 +71,19 @@ export default function Home() {
         <ParticleBackground />
         <Hero>
           <HeroTitle>Spacious</HeroTitle>
-          <HeroSubtitle>Landing subtitle, landing subtitle</HeroSubtitle>
-          <Button>Get Started</Button>
+          <HeroSubtitle>Parking power back in your hands.</HeroSubtitle>
+          <Link href="/find"><Button>Get Started</Button></Link>
         </Hero>
+        
+        <LowerContainer>
+          <LandingImage>One</LandingImage>
+          <LandingImage>Two</LandingImage>
+          <LandingImage>Three</LandingImage>
+        </LowerContainer>
+
+        <div style={{height: "100px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+          More text here...
+        </div>
     </>
   )
 }

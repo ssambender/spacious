@@ -30,7 +30,7 @@ const Particle = styled.div`
     }
   }
 
-  background: linear-gradient(90deg, rgba(63,67,251,1) 0%, rgba(210,70,252,1) 100%);
+  background: linear-gradient(90deg, var(--main-particle-1) 0%, var(--main-particle-2) 100%);
   mix-blend-mode: lighten;
 `;
 

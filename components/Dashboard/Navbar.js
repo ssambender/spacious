@@ -10,12 +10,28 @@ const NavbarContainer = styled.nav`
   padding: 20px 20vw;
   background-color: rgb(0 0 0 / 0%);
   color: #fff;
-  width: 100vw;
+  width: 100%;
+  position: sticky;
+  top: 0;
+
+  transition: background-color .4s ease;
+
+  &:hover {
+    background-color: rgb(0 0 0 / 5%);
+  }
+
+  @media all and (orientation: portrait) {
+    padding: 20px;
+  }
 `;
 
 const NavLinks = styled.div`
   display: flex;
   gap: 36px;
+
+  @media all and (orientation: portrait) {
+    gap: 8px;
+  }
 `;
 
 const NavButton = styled.button`
@@ -25,10 +41,12 @@ const NavButton = styled.button`
   font-size: 16px;
   cursor: pointer;
   opacity: 50%;
+  transition: opacity .2s ease-in-out, border-bottom .2s ease;
+  border-bottom: 1px solid #ffffff00;
 
   &:hover {
-    text-decoration: underline;
     opacity: 100%;
+    border-bottom: 1px solid #ffffff;
   }
 `;
 
@@ -40,7 +58,7 @@ const Navbar = () => {
       <Link href="/"><NavButton style={{fontFamily: "'Bagel Fat One', serif"}}>Spacious</NavButton></Link>
       <NavLinks>
         <Link href="/find"><NavButton>Find a Spot</NavButton></Link>
-        <Link href="/sell"><NavButton>Rent a Spot</NavButton></Link>
+        <Link href="/rent"><NavButton>Rent a Spot</NavButton></Link>
         {/* <NavButton onClick={() => router.push('/map')}>Map View</NavButton> */}
         <Link href="/map"><NavButton>Map View</NavButton></Link>
         <Link href="/about"><NavButton>About</NavButton></Link>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { onAuthStateChanged, getAuth, signOut } from 'firebase/auth';
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -47,9 +48,33 @@ const NavButton = styled.button`
   }
 `;
 
+const UserEmail = styled.span`
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+  margin-right: 8px;
+
+  &:hover::after {
+    content: '${props => props.email.replace(/\n/g, "\\A")}';
+    /* to be honest, I don't understand what this bit is ^ (\\A) I had to copilot a way to convert line breaks through prop, seperate than pre or &nbsp; */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: pre;
+    font-size: 14px;
+    z-index: 10;
+  }
+`;
+
 const Navbar = () => {
   const router = useRouter();
   const [isSticky, setIsSticky] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,17 +88,45 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(getAuth());
+      router.push('/auth/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+
   return (
     <NavbarContainer isSticky={isSticky}>
-      <Link href="/"><NavButton style={{fontFamily: "'Bagel Fat One', serif"}}>Spacious</NavButton></Link>
+      <Link href="/"><NavButton style={{ fontFamily: "'Bagel Fat One', serif" }}>Spacious</NavButton></Link>
       <NavLinks>
         <Link href="/find"><NavButton>Find a Spot</NavButton></Link>
         <Link href="/sell"><NavButton>Sell a Spot</NavButton></Link>
-        {/* <NavButton onClick={() => router.push('/map')}>Map View</NavButton> */}
         <Link href="/map"><NavButton>Map View</NavButton></Link>
         <Link href="/about"><NavButton>About</NavButton></Link>
-        
-        <div><Link href="/auth/login"><NavButton>Log In</NavButton></Link> <span style={{opacity: "50%"}}>/</span> <Link href="/auth/signup"><NavButton>Sign Up</NavButton></Link></div>
+
+        {user ? (
+          <div>
+            <UserEmail email={`Signed in as\n${user.email}`}>{user.email.split('@')[0]}</UserEmail>
+            <NavButton onClick={handleLogout}>Log Out</NavButton>
+          </div>
+        ) : (
+          <div>
+            <Link href="/auth/login"><NavButton>Log In</NavButton></Link>
+            <span style={{ opacity: "50%" }}>/</span>
+            <Link href="/auth/signup"><NavButton>Sign Up</NavButton></Link>
+          </div>
+        )}
       </NavLinks>
     </NavbarContainer>
   );

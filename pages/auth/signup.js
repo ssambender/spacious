@@ -44,7 +44,7 @@ const SubTitle = styled.div`
 const Input = styled.input`
   font-size: 16px;
   background-color: var(--background);
-  border: solid 1px ${props => props.isInvalid ? 'red' : 'rgba(255 255 255 / 25%)'};
+  border: solid 1px ${props => props.isinvalid ? 'red' : 'rgba(255 255 255 / 25%)'};
   color: #fff;
   padding: 10px;
   border-radius: 8px;
@@ -171,8 +171,8 @@ const Signup = () => {
     <Section>
         <SubTitle>Enter your name, email, and password</SubTitle>
         <Input type="text" placeholder='Name / Username'/>
-        <Input type="text" value={email} placeholder='Email' isInvalid={!isValidEmail} onChange={(e) => updateEmail(e.target.value)}/>
-        <Input type="password" value={password} placeholder='Password' isInvalid={!isValidPassword} onChange={(e) => updatePassword(e.target.value)}/>
+        <Input type="text" value={email} placeholder='Email' isinvalid={!isValidEmail} onChange={(e) => updateEmail(e.target.value)}/>
+        <Input type="password" value={password} placeholder='Password' isinvalid={!isValidPassword} onChange={(e) => updatePassword(e.target.value)}/>
 
         <ErrorLine>{error}</ErrorLine>
 

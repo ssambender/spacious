@@ -1,5 +1,5 @@
 import { auth } from "./Firebase";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, fetchSignInMethodsForEmail, onAuthStateChanged } from "firebase/auth";
 
 // Is email already in use?
 export async function isEmailInUse(email) {
@@ -31,4 +31,17 @@ export async function register(email, password, setUser) {
       } catch (error) {
         return { user: null, error: error.message }
       }
+  }
+
+  // Check to see when user is logged in and save
+  export function initializeAuthListener(setUser, setIsLoggedIn) {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        setIsLoggedIn(true);
+      } else {
+        setUser(null);
+        setIsLoggedIn(false);
+      }
+    });
   }

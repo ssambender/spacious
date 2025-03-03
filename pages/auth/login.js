@@ -44,7 +44,7 @@ const SubTitle = styled.div`
 const Input = styled.input`
   font-size: 16px;
   background-color: var(--background);
-  border: solid 1px ${props => props.isInvalid ? 'red' : 'rgba(255 255 255 / 25%)'};
+  border: solid 1px ${props => props.isinvalid ? 'red' : 'rgba(255 255 255 / 25%)'};
   color: #fff;
   padding: 10px;
   border-radius: 8px;
@@ -166,8 +166,8 @@ const Login = () => {
       <Section>
           <SubTitle>Enter your email and password</SubTitle>
 
-          <Input type="text" value={email} isInvalid={!isValidEmail} placeholder='Email' onChange={(e) => updateEmail(e.target.value)}/>
-          <Input type="password" value={password} isInvalid={!isValidPassword} placeholder='Password' onChange={(e) => updatePassword(e.target.value)}/>
+          <Input type="text" value={email} isinvalid={!isValidEmail} placeholder='Email' onChange={(e) => updateEmail(e.target.value)}/>
+          <Input type="password" value={password} isinvalid={!isValidPassword} placeholder='Password' onChange={(e) => updatePassword(e.target.value)}/>
 
           <ErrorLine>{error}</ErrorLine>
 
@@ -178,7 +178,7 @@ const Login = () => {
           <div style={{display: "flex", paddingTop: "40px", color: "rgba(255 255 255 / 50%"}}>
             Already have an account?
             <Link href='/auth/signup'>
-              <GoToLogin>Sign Up</GoToLogin>
+              <GoToLogin>Log In</GoToLogin>
             </Link>
           </div>
 

@@ -72,7 +72,8 @@ const Navbar = () => {
         {/* <NavButton onClick={() => router.push('/map')}>Map View</NavButton> */}
         <Link href="/map"><NavButton>Map View</NavButton></Link>
         <Link href="/about"><NavButton>About</NavButton></Link>
-        <Link href="/account"><NavButton>My Account</NavButton></Link>
+        
+        <div><Link href="/auth/login"><NavButton>Log In</NavButton></Link> <span style={{opacity: "50%"}}>/</span> <Link href="/auth/signup"><NavButton>Sign Up</NavButton></Link></div>
       </NavLinks>
     </NavbarContainer>
   );

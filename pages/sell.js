@@ -26,18 +26,18 @@ const CenterHoriz = styled.div`
     align-items: center;
 `;
 
-export default function About() {
+export default function Sell() {
   return (
     <>
         <Head>
-            <title>Spacious | About</title>
+            <title>Spacious | Sell</title>
         </Head>
 
         <Navbar/>
         <ParticleBackground />
 
         <Title>
-          About Spacious
+          Sell a spot
         </Title>
 
         <CenterHoriz>

@@ -3,7 +3,7 @@
 :root {
   --background: #191919;
   --foreground: #ededed;
-  --main-color-1: #293036;
+  --main-color: #293036;
   --main-particle-1: #00ccff;
   --main-particle-2: #721685;  /* green theme: #168528 */
 }
@@ -54,7 +54,7 @@ a {
   background: none;
 }
 *::-webkit-scrollbar-thumb {
-  background-color: var(--main-color-1);
+  background-color: var(--main-color);
   border-radius: 50px;
   transition: background-color .2s ease-in-out;
 }

@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 import Navbar from "@/components/Dashboard/Navbar"
 import Link from 'next/link';
+import Head from 'next/head';
 import ParticleBackground from "@/components/Dashboard/particlebackground"
 
 const Title = styled.section`
@@ -81,7 +82,7 @@ const SearchIconContainer = styled.div`
     align-items: center;
 `;
 const SearchbarSearch = styled.div`
-    background: linear-gradient(145deg, var(--main-color-1) 30%, var(--main-particle-2) 100%);
+    background: linear-gradient(145deg, var(--main-color) 30%, var(--main-particle-2) 100%);
     width: 48px;
     height: 48px;
     border-radius: 50px;
@@ -117,6 +118,10 @@ const SearchbarDivide = styled.div`
 export default function Find() {
   return (
     <>
+        <Head>
+            <title>Spacious | Find</title>
+        </Head>
+
         <Navbar/>
         <ParticleBackground />
 

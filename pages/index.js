@@ -10,7 +10,7 @@ const Hero = styled.section`
 
 const HeroTitle = styled.h2`
   font-size: 128px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   color: #ffffff;
   font-family: "Bagel Fat One", serif;
   font-weight: 400;
@@ -23,11 +23,11 @@ const HeroTitle = styled.h2`
 const HeroSubtitle = styled.p`
   font-size: 18px;
   color: #ffffff;
-  margin-bottom: 30px;
+  margin-bottom: 48px;
 `;
 
 const Button = styled.button`
-  background: linear-gradient(145deg, var(--main-color-1) 30%, var(--main-particle-2) 100%);
+  background: linear-gradient(145deg, var(--main-color) 30%, var(--main-particle-2) 100%);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -71,7 +71,7 @@ export default function Home() {
         <ParticleBackground />
         <Hero>
           <HeroTitle>Spacious</HeroTitle>
-          <HeroSubtitle>Parking power back in your hands.</HeroSubtitle>
+          <HeroSubtitle>Easily park as you please.</HeroSubtitle>
           <Link href="/find"><Button>Get Started</Button></Link>
         </Hero>
         

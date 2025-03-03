@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -8,17 +8,14 @@ const NavbarContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 20px 20vw;
-  background-color: rgb(0 0 0 / 0%);
+  background-color: ${props => props.isSticky ? 'rgb(25 25 25 / 100%)' : 'rgb(25 25 25 / 0%)'};
   color: #fff;
   width: 100%;
   position: sticky;
   top: 0;
+  z-index: 5;
 
   transition: background-color .4s ease;
-
-  &:hover {
-    background-color: rgb(0 0 0 / 5%);
-  }
 
   @media all and (orientation: portrait) {
     padding: 20px;
@@ -52,13 +49,26 @@ const NavButton = styled.button`
 
 const Navbar = () => {
   const router = useRouter();
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <NavbarContainer>
+    <NavbarContainer isSticky={isSticky}>
       <Link href="/"><NavButton style={{fontFamily: "'Bagel Fat One', serif"}}>Spacious</NavButton></Link>
       <NavLinks>
         <Link href="/find"><NavButton>Find a Spot</NavButton></Link>
-        <Link href="/rent"><NavButton>Rent a Spot</NavButton></Link>
+        <Link href="/sell"><NavButton>Sell a Spot</NavButton></Link>
         {/* <NavButton onClick={() => router.push('/map')}>Map View</NavButton> */}
         <Link href="/map"><NavButton>Map View</NavButton></Link>
         <Link href="/about"><NavButton>About</NavButton></Link>

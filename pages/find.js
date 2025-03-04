@@ -3,6 +3,9 @@ import Navbar from "@/components/Dashboard/Navbar"
 import Link from 'next/link';
 import Head from 'next/head';
 import ParticleBackground from "@/components/Dashboard/particlebackground"
+import { getLocations } from '@/backend/Database';
+import { useState } from 'react';
+import LocationCard from '@/components/Dashboard/LocationCard';
 
 const Title = styled.section`
   text-align: center;
@@ -71,6 +74,14 @@ const SearchbarSec = styled.div`
     display: none;
     -webkit-appearance: none;
     }
+
+    & input[type=number]::-webkit-inner-spin-button, 
+    & input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0; 
+    }
 `;
 const SearchIconContainer = styled.div`
     width: 10%;
@@ -115,7 +126,32 @@ const SearchbarDivide = styled.div`
     }
 `;
 
+const ResultsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 20px auto;
+`;
+
 export default function Find() {
+    const [location, setLocation] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [price, setPrice] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+  
+    const handleSearch = async () => {
+      try {
+        let minPrice = price ? parseFloat(price) : null;
+        let maxPrice = minPrice ? minPrice + 100 : null; // Example: search within $100 range
+        const results = await getLocations(minPrice, maxPrice);
+        setSearchResults(results);
+        console.log('Search results:', results);
+      } catch (error) {
+        console.error('Error searching locations:', error);
+      }
+    };
+
   return (
     <>
         <Head>
@@ -151,15 +187,23 @@ export default function Find() {
                         input.showPicker?.() || input.focus();
                     }
                 }}>
-                    To when?<input type='date'></input>
+                    How much?<input type='number' placeholder='$0.00'></input>
                 </SearchbarSec>
                 <SearchbarDivide />
                 <SearchIconContainer>
-                    <SearchbarSearch>
-                        a
+                    <SearchbarSearch onClick={handleSearch}>
+                        GO
                     </SearchbarSearch>
                 </SearchIconContainer>
             </Searchbar>
+        </CenterHoriz>
+
+        <CenterHoriz>
+            <ResultsContainer>
+            {searchResults.map((location, index) => (
+            <LocationCard key={index} location={location} />
+            ))}
+        </ResultsContainer>
         </CenterHoriz>
     </>
   )

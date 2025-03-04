@@ -143,7 +143,7 @@ export default function Find() {
     const handleSearch = async () => {
       try {
         let minPrice = price ? parseFloat(price) : null;
-        let maxPrice = minPrice ? minPrice + 100 : null; // Example: search within $100 range
+        let maxPrice = minPrice ? minPrice + 100 : null;
         const results = await getLocations(minPrice, maxPrice);
         setSearchResults(results);
         console.log('Search results:', results);

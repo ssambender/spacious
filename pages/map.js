@@ -4,7 +4,8 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import ParticleBackground from "@/components/Dashboard/particlebackground"
-import React, { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { getLocations } from '@/backend/Database';
 
 const NavbarBG = styled.div`
     z-index: 1;
@@ -28,25 +29,64 @@ const MapContainer = styled.div`
 export default function Map() {
     const router = useRouter();
     const mapRef = useRef(null);
+    const [searchResults, setSearchResults] = useState([]);
+    const markersRef = useRef([]);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
-        const L = require('leaflet');
-        if (!mapRef.current) {
-            mapRef.current = L.map('map').setView([40.795, -77.86], 16);
-            L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(mapRef.current);
+            const L = require('leaflet');
+            if (!mapRef.current) {
+                mapRef.current = L.map('map').setView([40.795, -77.86], 16);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                }).addTo(mapRef.current);
+            }
         }
-        }
+
+        const fetchData = async () => {
+            await handleSearch();
+        };
+
+        fetchData();
+
         return () => {
-        if (mapRef.current) {
-            mapRef.current.remove();
-            mapRef.current = null;
-        }
+            if (mapRef.current) {
+                mapRef.current.remove();
+                mapRef.current = null;
+            }
         };
     }, []);
+
+    const handleSearch = async () => {
+        try {
+            const results = await getLocations();
+            setSearchResults(results);
+            console.log("searched");
+        } catch (error) {
+            console.error('Error searching locations:', error);
+        }
+    };
+
+    useEffect(() => {
+        if (!mapRef.current || typeof window === 'undefined') return;
+        const L = require('leaflet');
+
+        markersRef.current.forEach(marker => marker.remove());
+        markersRef.current = [];
+
+        searchResults.forEach(location => {
+            if (!location.coordinates) return;
+
+            const [lat, lng] = location.coordinates.split(',').map(coord => parseFloat(coord.trim()));
+            if (!isNaN(lat) && !isNaN(lng)) {
+                const marker = L.marker([lat, lng])
+                    .addTo(mapRef.current)
+                    .bindPopup(`<b>${location.title}</b><br>Price: $${location.price}`);
+                markersRef.current.push(marker);
+            }
+        });
+    }, [searchResults]);
 
   return (
     <>
@@ -70,7 +110,8 @@ export default function Map() {
 
         <ParticleBackground />
 
-        <MapContainer id="map" />
+        <div id="map" style={{ width: '100%', height: '100vh', zIndex: "1"}} />
+
     </>
   )
 }

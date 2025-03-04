@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { onAuthStateChanged, getAuth, signOut } from 'firebase/auth';
+import Image from 'next/image';
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -109,7 +110,11 @@ const Navbar = () => {
 
   return (
     <NavbarContainer isSticky={isSticky}>
-      <Link href="/"><NavButton style={{ fontFamily: "'Bagel Fat One', serif" }}>Spacious</NavButton></Link>
+      <Link href="/">
+        <NavButton style={{ fontFamily: "'Bagel Fat One', serif", display: "flex", alignItems: "center", position: "relative"}}>
+          <Image src="/spacious-icon.png" style={{position: "absolute", left: "-45px"}} width={40} height={40} alt="A parkign space"/>
+          Spacious
+        </NavButton></Link>
       <NavLinks>
         <Link href="/find"><NavButton>Find a Spot</NavButton></Link>
         <Link href="/sell"><NavButton>Sell a Spot</NavButton></Link>

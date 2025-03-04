@@ -19,9 +19,9 @@ export default function App({ Component, pageProps }) {
           <title>Spacious</title>
           <meta name='description' content='Put a description here about your app'/>
           <meta name='robots' content='index, follow'/>
-          <link rel="apple-touch-icon" sizes="180x180" href="public/favicon.ico"/>
-          <link rel="icon" type="image/png" sizes="32x32" href="public/favicon.ico"/>
-          <link rel="icon" type="image/png" sizes="16x16" href="public/favicon.ico"/>
+          <link rel="apple-touch-icon" sizes="180x180" href="spacious-icon.png"/>
+          <link rel="icon" type="image/png" sizes="32x32" href="spacious-icon.png"/>
+          <link rel="icon" type="image/png" sizes="16x16" href="spacious-icon.png"/>
           <meta name="msapplication-TileColor" content="#da532c"/>
           <meta name="theme-color" content="#ffffff"/>
         </Head>

@@ -53,7 +53,8 @@ const UserEmail = styled.span`
   cursor: pointer;
   text-align: center;
   margin-right: 8px;
-
+  text-transform: capitalize;
+  
   &:hover::after {
     content: '${props => props.email.replace(/\n/g, "\\A")}';
     /* to be honest, I don't understand what this bit is ^ (\\A) I had to copilot a way to convert line breaks through prop, seperate than pre or &nbsp; */

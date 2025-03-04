@@ -41,7 +41,15 @@ export default function About() {
         </Title>
 
         <CenterHoriz>
-            <div>centered text</div>
+            <div>Spacious is a parking app that allows users to find parking spots, or sell one of their own if they have extra.<br/>
+              This is a win-win because it allows people to find cheaper, easier, and more local parking. While also letting people<br/>
+              earn extra revenue for any spots they have taking up space in the area.<br/><br/>
+              
+              It can be thought of as an AirBnB for parking spaces essentially.<br/><br/>
+
+              Utilizing the OpenStreetMap and Leaflet APIs to display data, Firebase for user authentication,<br/>
+              and Firestore for realtime database storing location points.
+            </div>
         </CenterHoriz>
     </>
   )

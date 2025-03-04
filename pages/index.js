@@ -2,7 +2,8 @@ import { styled } from 'styled-components'
 import Navbar from "@/components/Dashboard/Navbar"
 import ThemeButton from '@/components/Dashboard/themebtn';
 import Link from 'next/link';
-import ParticleBackground from "@/components/Dashboard/particlebackground"
+import ParticleBackground from "@/components/Dashboard/particlebackground";
+import Image from 'next/image';
 
 const Hero = styled.section`
   text-align: center;
@@ -43,6 +44,17 @@ const LandingImage = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
+  position: relative;
+  filter: brightness(0.3);
+  opacity: 50%;
+  transition: all .2s ease;
+
+  &:hover {
+    cursor: default;
+    opacity: 100%;
+    filter: brightness(0.5);
+    transition: all .1s ease;
+  }
 `;
 
 export default function Home() {
@@ -57,13 +69,19 @@ export default function Home() {
         </Hero>
         
         <LowerContainer>
-          <LandingImage>One</LandingImage>
-          <LandingImage>Two</LandingImage>
-          <LandingImage>Three</LandingImage>
+          <LandingImage>
+            <Image src="/parkingSpot2.png" alt="A parkign space" layout="fill" objectFit="cover"/>
+          </LandingImage>
+          <LandingImage>
+          <Image src="/parkingSpot.png" alt="A parkign space" layout="fill" objectFit="cover"/>
+          </LandingImage>
+          <LandingImage>
+          <Image src="/parkingSpot1.png" alt="A parkign space" layout="fill" objectFit="cover"/>
+          </LandingImage>
         </LowerContainer>
 
         <div style={{height: "100px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-          More text here...
+          Some examples of parking spaces claimed by satisfied users.
         </div>
     </>
   )

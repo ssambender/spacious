@@ -71,7 +71,7 @@ const UserAgreementSpan = styled(Link)`
   }
 `
 
-const GoToLogin = styled.div`
+const GoToSignUp = styled.div`
   color: #fff;
   margin-left: 8px;
   text-decoration: underline;
@@ -176,9 +176,9 @@ const Login = () => {
           <ThemeButton padding={"100px"} onClick={handleLogin}>Sign Up</ThemeButton>
 
           <div style={{display: "flex", paddingTop: "40px", color: "rgba(255 255 255 / 50%"}}>
-            Already have an account?
+            Need an Account?
             <Link href='/auth/signup'>
-              <GoToLogin>Log In</GoToLogin>
+              <GoToSignUp>SignUp</GoToSignUp>
             </Link>
           </div>
 

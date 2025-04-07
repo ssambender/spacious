@@ -120,9 +120,11 @@ const Navbar = () => {
         <Link href="/sell"><NavButton>Sell a Spot</NavButton></Link>
         <Link href="/map"><NavButton>Map View</NavButton></Link>
         <Link href="/about"><NavButton>About</NavButton></Link>
+        
 
         {user ? (
           <div>
+            <Link href="/account"><NavButton>Account Page</NavButton></Link>
             <UserEmail email={`Signed in as\n${user.email}`}>{user.email.split('@')[0]}</UserEmail>
             <NavButton onClick={handleLogout}>Log Out</NavButton>
           </div>

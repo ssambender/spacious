@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import Navbar from '/components/navbar';
-import ParticleBackground from '/components/particlebackground';
+import Navbar from '../components/Dashboard/Navbar';
+import ParticleBackground from '../components/Dashboard/particlebackground';
 
 const Container = styled.div`
   width: 100vw;

@@ -5,21 +5,21 @@ import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = process.env.NODE_ENV === 'production' ? {
-    apiKey: process.env.NEXT_PUBLIC_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_APP_ID,
-    measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
+        apiKey: "AIzaSyDB2sIm2VKdU7hi9y2dYx9DmZrw-ak3EYs",
+    authDomain: "spacious-263.firebaseapp.com",
+    projectId: "spacious-263",
+    storageBucket: "spacious-263.firebasestorage.app",
+    messagingSenderId: "282764534399",
+    appId: "1:282764534399:web:7411d1db40e30b31ae954a",
+    measurementId: "G-4418DG1NYK"
 } : {
-    apiKey: process.env.NEXT_PUBLIC_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_APP_ID,
-    measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
+        apiKey: "AIzaSyDB2sIm2VKdU7hi9y2dYx9DmZrw-ak3EYs",
+    authDomain: "spacious-263.firebaseapp.com",
+    projectId: "spacious-263",
+    storageBucket: "spacious-263.firebasestorage.app",
+    messagingSenderId: "282764534399",
+    appId: "1:282764534399:web:7411d1db40e30b31ae954a",
+    measurementId: "G-4418DG1NYK"
 }
 
 // Initialize Firebase

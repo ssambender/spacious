@@ -173,12 +173,12 @@ const Login = () => {
 
           <UserAgreementText>By signing in, you are agreeing to the <UserAgreementSpan href='/legal/terms-of-use' rel="noopener noreferrer"> Terms of Use</UserAgreementSpan> and <UserAgreementSpan href='/legal/privacy-policy' rel="noopener noreferrer">Privacy Policy.</UserAgreementSpan></UserAgreementText>
 
-          <ThemeButton padding={"100px"} onClick={handleLogin}>Sign Up</ThemeButton>
+          <ThemeButton padding={"100px"} onClick={handleLogin}>Log In</ThemeButton>
 
           <div style={{display: "flex", paddingTop: "40px", color: "rgba(255 255 255 / 50%"}}>
             Need an Account?
             <Link href='/auth/signup'>
-              <GoToSignUp>SignUp</GoToSignUp>
+              <GoToSignUp>Sign Up</GoToSignUp>
             </Link>
           </div>
 

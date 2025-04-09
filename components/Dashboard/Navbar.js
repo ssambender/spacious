@@ -123,10 +123,12 @@ const Navbar = () => {
         
 
         {user ? (
-          <div>
-            <Link href="/account"><NavButton>Account Page</NavButton></Link>
-            <UserEmail email={`Signed in as\n${user.email}`}>{user.email.split('@')[0]}</UserEmail>
-            <NavButton onClick={handleLogout}>Log Out</NavButton>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              {router.pathname !== '/account' && (
+                <Link href="/account"><NavButton>Account Page</NavButton></Link>
+              )}
+              <UserEmail email={`Signed in as\n${user.email}`}>{user.email.split('@')[0]}</UserEmail>
+              <NavButton onClick={handleLogout}>Log Out</NavButton>
           </div>
         ) : (
           <div>

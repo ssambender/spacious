@@ -7,9 +7,9 @@ import ParticleBackground from '../components/Dashboard/particlebackground';
 const Container = styled.div`
   width: 100vw;
   margin: 0 auto;
-  background: var(--background);
   color: white;
-  padding: 50px 20px;
+  position: relative;
+  z-index: 1;
 `;
 
 const Header = styled.header`

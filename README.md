@@ -25,6 +25,9 @@ ___
 ### Planned features:
 - [ ] Payment processing?
 - [ ] View your current listings
+- [ ] Click on map to add a listing directly, or take you to the listing page
+- [ ] Open a purchase modal view when a map listing is clicked
+- [ ] Rework layout to make sure responsive to mobile
 
 _Feel free to submit pull requests!_
 

@@ -148,8 +148,8 @@ const Container = styled.div`
 `;
 
 const MapContainer = styled.div`
-  height: 300px;
-  width: 300px;
+  height: 400px;
+  width: 400px;
   filter: brightness(0.5);
 `;
 
@@ -168,7 +168,6 @@ const SellPage = () => {
     setImage(URL.createObjectURL(file));
   };
 
-  
   const mapRef = useRef(null);
   
   useEffect(() => {
@@ -211,22 +210,47 @@ const SellPage = () => {
         <br></br>
         <br></br>
 
-        <div id="dates">
-          <h5>Start Date:</h5>
+        <div id="start_date_time"
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "16px"}}>
           <div id="start_date">
-            <DatePicker
-              selectsStart
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              startDate={startDate}
-            />
+            <h5>Start Date:</h5>
+              <DatePicker
+                selectsStart
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                startDate={startDate}
+              />
           </div>
+          <div id="start_time">
+            <h5>Select Start Time</h5>
+              <LocalizationProvider dateAdapter={AdapterDayjs} float>
+                <TimePicker
+                  label="Select Start Time"
+                  value={selectedTime}
+                  onChange={(newTime) => setSelectedTime(newTime)}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+          </div>
+        </div>
+        
           
+      
           <br></br>
           <br></br>
 
-          <h5>End Date:</h5>
+          
+        
+        <div id="end_date_time"
+          style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "16px"}}>
           <div id="end_date">
+            <h5>End Date:</h5>
             <DatePicker
               selectsEnd
               selected={endDate}
@@ -236,44 +260,28 @@ const SellPage = () => {
               minDate={startDate}
             />
           </div>
+          <div id="end_time">
+            <h5>Select End Time</h5>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <TimePicker
+                  label="Select Start Time"
+                  value={selectedTime}
+                  onChange={(newTime) => setSelectedTime(newTime)}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+          </div>
         </div>
-
+      
         <br></br>
         <br></br>
-
-        <div id="start_time">
-          <h5>Select Daily Start Time</h5>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <TimePicker
-              label="Select Start Time"
-              value={selectedTime}
-              onChange={(newTime) => setSelectedTime(newTime)}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-        </div>
-
-        <br></br>
-
-        <div id="end_time">
-        <h5>Select Daily End Time</h5>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <TimePicker
-              label="Select Start Time"
-              value={selectedTime}
-              onChange={(newTime) => setSelectedTime(newTime)}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-        </div>
 
         <div id="durations">
-          <br></br>
-          <br></br>
           <h5>Price to Park:</h5>
           <input type="text" id="minimum_text_field"></input> 
         </div>
-
+        
+        <br></br>
         <br></br>
         <br></br>
 
@@ -295,8 +303,7 @@ const SellPage = () => {
         <br></br>
 
         <div id="select_location">
-
-          <h5>Location:</h5>
+          <h2>Location:</h2>
             <div id="map_view">
               <br></br>
               <h5>Select from Map View:</h5>
@@ -326,7 +333,9 @@ const SellPage = () => {
         <br></br>
         <br></br>
 
-        <button id="submit">Post Spot</button>
+        <button id="submit"
+        >
+        Post Spot</button>
 
     </Container>
   );
